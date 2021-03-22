@@ -23,9 +23,13 @@
     </div>
     <div class="list">
       <div v-for="(list,i) in lists" :key="list.i" class="listArea">
-        <div class="listBox"></div>
-        <div class="listDate">{{list.date}}   <span>・ {{list.cate}}</span></div>
-        <div class="listTitle">{{list.title}}</div>
+        <router-link :to="'detail?id='+list.id">
+          <div>
+            <div class="listBox"></div>
+            <div class="listDate">{{list.eventStartDate}}   <span>・ {{list.online ? '온라인' : '오프라인'}}</span></div>
+            <div class="listTitle">{{list.title}}</div>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -39,57 +43,11 @@ export default {
     return{
       onlineyn:'00',
       whom:'00',
-      lists:[
-        {
-          'title':'Flutter Engage Extended Korea',
-          'date':'2021/04/01',
-          'cate':'온라인'
-        },
-        {
-          'title':'NVIDIA JETSON DEVELOPER MEETUP',
-          'date':'2021/04/03',
-          'cate':'오프라인'
-        },
-        {
-          'title':'Live온라인:도커 / k8s / 클라우드(AWS) 네트워크 완전 정복',
-          'date':'2021/04/10',
-          'cate':'오프라인'
-        },
-        {
-          'title':'🐰엘리스 스쿨🐰 화상강의 코딩 선생님 모집엘리스 스쿨 화상강의 코딩 선생님 모집',
-          'date':'2021/05/01',
-          'cate':'온라인'
-        },
-        {
-          'title':'3test webinar',
-          'date':'2021/04/30',
-          'cate':'오프라인'
-        },
-        {
-          'title':'4test webinar',
-          'date':'2021/05/02',
-          'cate':'온라인'
-        },
-        {
-          'title':'5test webinar',
-          'date':'2021/04/28',
-          'cate':'오프라인'
-        },
-        {
-          'title':'6test webinar',
-          'date':'2021/04/15',
-          'cate':'온라인'
-        },
-        {
-          'title':'7test webinar',
-          'date':'2021/04/01',
-          'cate':'온라인'
-        },
-      ]
+      lists:[]
     }
   },
   mounted(){
-    // this.callList();
+    this.callList();
   },
   methods:{
     async callList(){
@@ -184,5 +142,9 @@ background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
 }
 .listDate span{
   margin-left:5px;
+}
+a{
+  color:#000000;
+  text-decoration: none;
 }
 </style>

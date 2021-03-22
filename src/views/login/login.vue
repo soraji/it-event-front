@@ -73,7 +73,7 @@ export default {
 .form-text:-moz-read-only{background:#f5f5f5}
 .form-text:read-only{background:#f5f5f5}
 .form-text:disabled{opacity:.6;cursor:not-allowed}
-.form-text:focus{box-shadow:0 0 0 1px #27b06e;border-color:transparent;outline:0}
+.form-text:focus{box-shadow:0 0 0 1px #2AF598;border-color:transparent;outline:0}
 .form-text--textarea{height:auto;min-height:120px;line-height:1.8;padding-top:15px;padding-bottom:15px;resize:none;border-radius:2px;border-color:#bbb}
 .form-text--error{border-color:#ff0322}
 .form-text--inline{display:inline-block;width:auto}

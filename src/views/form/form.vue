@@ -6,12 +6,12 @@
       <table class="tableClass">
         <tr>
           <th>행사명</th>
-          <td><input type="text" name="cf_name" id="cf_name"></td>
+          <td><input type="text" name="cf_name" id="cf_name" v-model="cf_name"></td>
         </tr>
         <tr>
           <th>행사종류</th>
           <td>
-            <select name="cf_cate" id="cf_cate" class="selectpicker selectDropDown show-tick">
+            <select name="cf_cate" id="cf_cate" v-model="cf_cate" class="selectpicker selectDropDown show-tick">
               <option value="seminar">컨퍼런스(세미나)</option>
               <option value="class">클래스</option>
             </select>
@@ -28,21 +28,21 @@
         </tr>
         <tr>
           <th>호스트명</th>
-          <td><input type="text" name="cf_host" id="cf_host"></td>
+          <td><input type="text" name="cf_host" id="cf_host" v-model="cf_host"></td>
         </tr>
         <tr>
           <th>호스트 전화번호</th>
           <td>
-            <input type="text" name="hs_hp1" id="hs_hp1" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
-            <input type="text" name="hs_hp2" id="hs_hp2" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
-            <input type="text" name="hs_hp3" id="hs_hp3" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+            <input type="text" name="hs_hp1" id="hs_hp1" v-model="hs_hp1" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
+            <input type="text" name="hs_hp2" id="hs_hp2" v-model="hs_hp2" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> -
+            <input type="text" name="hs_hp3" id="hs_hp3" v-model="hs_hp3" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
           </td>
         </tr>
         <tr>
           <th>호스트 이메일</th>
           <td>
-            <input type="text" name="hs_email1" id="hs_email1">@
-            <input type="text" name="hs_email2" id="hs_email2">
+            <input type="text" name="hs_email1" id="hs_email1" v-model="hs_email1">@
+            <input type="text" name="hs_email2" id="hs_email2" v-model="hs_email2">
           </td>
         </tr>
         <tr>
@@ -59,14 +59,14 @@
         </tr>
         <tr>
           <th>장소</th>
-          <td><input type="text" name="loca" id="loca"></td>
+          <td><input type="text" name="loca" id="loca" v-model="loca"></td>
         </tr>
         <tr>
           <td>장소 api들어갈곳</td>
         </tr>
         <tr>
           <th>참여인원</th>
-          <td><input type="text" name="pplNum" id="pplNum"></td>
+          <td><input type="text" name="pplNum" id="pplNum" v-model="pplNum"></td>
         </tr>
         <tr>
           <th>대표이미지 등록</th>
@@ -74,7 +74,7 @@
         </tr>
         <tr>
           <th>행사내용</th>
-          <td><textarea name="cf_content" cols="40" rows="5"></textarea></td>
+          <td><textarea name="cf_content" cols="40" rows="5" v-model="cf_content"></textarea></td>
         </tr>
       </table>
       <button type="button" class="submitBtn" @click="checkform()">등록하기</button>
@@ -111,20 +111,45 @@ export default {
       return moment(date).format('YYYY/MM/DD');
     },
     async checkform(){
+      const date1 = this.getFormatDate(this.date1).split('-')[0]+'-'+this.getFormatDate(this.date1).split('-')[1]+'-'+this.getFormatDate(this.date1).split('-')[2];
+      const date2 = this.getFormatDate(this.date2).split('-')[0]+'-'+this.getFormatDate(this.date2).split('-')[1]+'-'+this.getFormatDate(this.date2).split('-')[2];
+      console.log(date1);
+
+      console.log({
+          "eventCreateType":"INNER",
+          "hostEmail":this.hs_email1+"@"+this.hs_email2,
+          "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
+          "title":this.cf_name,
+          "eventStartDate":date1,
+          "eventLastDate":date2,
+          "eventConceptType":this.cf_cate,
+          "emailSendingMessage":"",
+          "location":this.loca,
+          "detailLocation":"위치 지도 정보 내용",
+          "locationDescription":"위치 상세 내용입니다.",
+          "image":null,
+          "contents":"행사 내용 필수 입력 입니다.",
+          "onlinePlatformInfo":null,
+          "onlineEnrollInfo":null,
+          "online":this.cf_onlineYN,
+          "emailReserveSending":false
+        });
+        
       const res = await axios.post('https://it-event-back.herokuapp.com/events',
         {
           "eventCreateType":"INNER",
           "hostEmail":this.hs_email1+"@"+this.hs_email2,
           "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
           "title":this.cf_name,
-          "eventStartDate":this.date1,
-          "eventLastDate":this.date2,
+          "eventStartDate":date1,
+          "eventLastDate":date2,
           "eventConceptType":this.cf_cate,
           "emailSendingMessage":"",
           "location":this.loca,
-          "detailLocation":"",
-          "locationDescription":"",
-          "image":this.thumbnail,
+          "detailLocation":"위치 지도 정보 내용",
+          "locationDescription":"위치 상세 내용입니다.",
+          "image":null,
+          "contents":"행사 내용 필수 입력 입니다.",
           "onlinePlatformInfo":null,
           "onlineEnrollInfo":null,
           "online":this.cf_onlineYN,
@@ -134,15 +159,16 @@ export default {
         //   "eventCreateType":"INNER",
         //   "hostEmail":"uzini_@naver.com",
         //   "hostPhone":null,
-        //   "title":"이벤트 생성하기 테스트0315_2",
-        //   "eventStartDate":"2021-03-05 00:00:00",
-        //   "eventLastDate":"2021-03-10 00:00:00",
+        //   "title":"정상 타이틀 4",
+        //   "eventStartDate":"2021-03-23 00:00:00",
+        //   "eventLastDate":"2021-03-30 00:00:00",
         //   "eventConceptType":"CLASS",
         //   "emailSendingMessage":"예약 발송 메시지 테스트 예약 발송 메시지 테스트 예약 발송 메시지 테스트",
         //   "location":"위치 정보",
         //   "detailLocation":"위치 지도 정보 내용",
         //   "locationDescription":"위치 상세 내용입니다.",
         //   "image":null,
+        //   "contents":"행사 내용 필수 입력 입니다.",
         //   "onlinePlatformInfo":null,
         //   "onlineEnrollInfo":null,
         //   "online":false,
@@ -150,7 +176,15 @@ export default {
         // }
       )
       console.log(res);
-    }
+    },
+    getFormatDate(date){
+      var year = date.getFullYear();              //yyyy
+      var month = (1 + date.getMonth());          //M
+      month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+      var day = date.getDate();                   //d
+      day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+      return  year + '-' + month + '-' + day;
+    },
   }
 }
 </script>

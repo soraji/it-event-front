@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import main from '../components/main.vue';
+import detail from '../components/detail.vue';
 import online from '../components/online.vue';
 import free from '../components/free.vue';
 import magam from '../components/magam.vue';
@@ -36,6 +37,10 @@ export const router = new VueRouter({
     {
       path:'/mogakco',
       component:mogakco,
+    },
+    {
+      path:'/detail',
+      component:detail,
     },
     {
       path:'/enroll',
