@@ -136,44 +136,44 @@ export default {
         });
         
       const res = await axios.post('https://it-event-back.herokuapp.com/events',
-        {
-          "eventCreateType":"INNER",
-          "hostEmail":this.hs_email1+"@"+this.hs_email2,
-          "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
-          "title":this.cf_name,
-          "eventStartDate":date1,
-          "eventLastDate":date2,
-          "eventConceptType":this.cf_cate,
-          "emailSendingMessage":"",
-          "location":this.loca,
-          "detailLocation":"위치 지도 정보 내용",
-          "locationDescription":"위치 상세 내용입니다.",
-          "image":null,
-          "contents":"행사 내용 필수 입력 입니다.",
-          "onlinePlatformInfo":null,
-          "onlineEnrollInfo":null,
-          "online":this.cf_onlineYN,
-          "emailReserveSending":false
-        }
         // {
         //   "eventCreateType":"INNER",
-        //   "hostEmail":"uzini_@naver.com",
-        //   "hostPhone":null,
-        //   "title":"정상 타이틀 4",
-        //   "eventStartDate":"2021-03-23 00:00:00",
-        //   "eventLastDate":"2021-03-30 00:00:00",
-        //   "eventConceptType":"CLASS",
-        //   "emailSendingMessage":"예약 발송 메시지 테스트 예약 발송 메시지 테스트 예약 발송 메시지 테스트",
-        //   "location":"위치 정보",
+        //   "hostEmail":this.hs_email1+"@"+this.hs_email2,
+        //   "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
+        //   "title":this.cf_name,
+        //   "eventStartDate":date1,
+        //   "eventLastDate":date2,
+        //   "eventConceptType":this.cf_cate,
+        //   "emailSendingMessage":"",
+        //   "location":this.loca,
         //   "detailLocation":"위치 지도 정보 내용",
         //   "locationDescription":"위치 상세 내용입니다.",
         //   "image":null,
         //   "contents":"행사 내용 필수 입력 입니다.",
         //   "onlinePlatformInfo":null,
         //   "onlineEnrollInfo":null,
-        //   "online":false,
+        //   "online":this.cf_onlineYN,
         //   "emailReserveSending":false
         // }
+        {
+          "eventCreateType":"INNER",
+          "hostEmail":"uzini_@naver.com",
+          "hostPhone":null,
+          "title":"정상 타이틀 4",
+          "eventStartDate":"2021-03-30 00:00:00",
+          "eventLastDate":"2021-03-30 00:00:00",
+          "eventConceptType":"CLASS",
+          "emailSendingMessage":"예약 발송 메시지 테스트 예약 발송 메시지 테스트 예약 발송 메시지 테스트",
+          "location":"위치 정보",
+          "detailLocation":"위치 지도 정보 내용",
+          "locationDescription":"위치 상세 내용입니다.",
+          "image":null,
+          "contents":"행사 내용 필수 입력 입니다.",
+          "onlinePlatformInfo":null,
+          "onlineEnrollInfo":null,
+          "online":false,
+          "emailReserveSending":false
+        }
       )
       console.log(res);
     },
