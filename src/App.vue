@@ -35,6 +35,7 @@ html,body{
   padding:0;
   font-size:16px;
   height:100%;
+  position: relative;
 }
 .fade-enter,
 .fade-leave-active {

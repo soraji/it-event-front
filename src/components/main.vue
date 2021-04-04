@@ -29,7 +29,7 @@
             <div class="listDate">{{list.eventStartDate}}   <span>・ {{list.online ? '온라인' : '오프라인'}}</span></div>
             <div class="listTitle">{{list.title}}</div>
           </div>
-        </router-link>
+        </router-link> 
       </div>
     </div>
   </div>

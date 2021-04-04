@@ -27,11 +27,11 @@
         
         <nav class="find_pw">
           <div class="find">
-            <a href="/user/find-id" class="">아이디 찾기</a> 
-            <a href="/user/find-pw" class="">비밀번호 찾기</a>
+            <a href="/find-id" class="">아이디 찾기</a> 
+            <a href="/find-pw" class="">비밀번호 찾기</a>
           </div> 
           <div class="join">
-            <a href="/user/signup" class="">회원가입</a>
+            <a href="/join" class="">회원가입</a>
           </div>
         </nav>
       </article>
