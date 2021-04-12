@@ -19,10 +19,13 @@ var formVar = {
       },
       date1 : new Date(new Date().getFullYear(), new Date().getMonth(),  new Date().getDate()),
       date2 : new Date(new Date().getFullYear(), new Date().getMonth(),  new Date().getDate()),
+      time1 : '',
+      time2 : '',
       ko:ko,
       loading:false, 
       customLabels,
       color:'#008844',
+      
     } 
   },
   computed:{
