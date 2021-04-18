@@ -8,6 +8,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {store} from './store/index.js'; 
 var VueScrollTo = require('vue-scrollto');
+import VueTimepicker from 'vue2-timepicker'
 
 
 library.add(fas)
@@ -16,6 +17,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueRouter);
 Vue.use(VueScrollTo);
 Vue.config.productionTip = false;
+Vue.use(VueTimepicker);
+Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),

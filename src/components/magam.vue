@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="list">
-      <div v-for="(list,i) in lists" :key="list.id" class="list_area">
-        <router-link :to="'detail?id='+list.id">
-          <div class="list_box"></div>
-          <div class="list_date">{{list.eventStartDate}}   <span>・ {{list.online == false ? '오프라인' : '온라인'}}</span></div>
-          <div class="list_title">{{list.title}}</div>
-        </router-link>
+      <div v-for="list in lists" :key="list.id" class="list_area" >
+        <template v-if="list.eventStartDate > ">
+          <router-link :to="'detail?id='+list.id">
+            <div class="list_box"></div>
+            <div class="list_date">{{list.eventStartDate}}   <span>・ {{list.online == false ? '오프라인' : '온라인'}}</span></div>
+            <div class="list_title">{{list.title}}</div>
+          </router-link>
+        </template>
       </div>
     </div>
     <div class="floating">

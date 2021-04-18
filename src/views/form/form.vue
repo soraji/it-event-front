@@ -58,6 +58,12 @@
           </td>
         </tr>
         <tr>
+          <th>행사시작시간</th>
+          <td>
+            <vue-timepicker format="HH:mm:ss"></vue-timepicker>
+          </td>
+        </tr>
+        <tr>
           <th>장소</th>
           <td><input type="text" name="loca" id="loca" v-model="loca"></td>
         </tr>
@@ -98,13 +104,14 @@ import bootstrapselect from '../../lib/bootstrap-select.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import VueTimepicker from 'vue2-timepicker'
 import formVar from './form.js';
 export default {
   name:'enrollForm',
   mixins: [formVar],
   components:{
     Datepicker,
-    FontAwesomeIcon,
+    FontAwesomeIcon,VueTimepicker
   },
   mounted() { //업종 mounted와 updated안하면 dom에서 bootstrap-select로 바인딩이 안됨
     // const $selectpicker = $(this.$el).find('.selectpicker');
@@ -118,17 +125,20 @@ export default {
       return moment(date).format('YYYY/MM/DD');
     },
     async checkform(){
-      const date1 = this.getFormatDate(this.date1).split('-')[0]+'-'+this.getFormatDate(this.date1).split('-')[1]+'-'+this.getFormatDate(this.date1).split('-')[2];
-      const date2 = this.getFormatDate(this.date2).split('-')[0]+'-'+this.getFormatDate(this.date2).split('-')[1]+'-'+this.getFormatDate(this.date2).split('-')[2];
-      console.log(date1);
+      // const date1 = `${this.getFormatDate(this.date1).split('-')[0]}-${this.getFormatDate(this.date1).split('-')[1]}-${this.getFormatDate(this.date1).split('-')[2]}`;
+      // const date2 = `${this.getFormatDate(this.date2).split('-')[0]}-${this.getFormatDate(this.date2).split('-')[1]}-${this.getFormatDate(this.date2).split('-')[2]}`;
+      const date1 = this.getFormatDate(this.date1);
+      const date2 = this.getFormatDate(this.date2);
+      const time1 = this.getFormatTime(this.time1);
+      const time2 = this.getFormatTime(this.time2);
 
       console.log({
           "eventCreateType":"INNER",
           "hostEmail":this.hs_email1+"@"+this.hs_email2,
           "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
           "title":this.cf_name,
-          "eventStartDate":date1,
-          "eventLastDate":date2,
+          "eventStartDate":`${date1} ${time1}`,
+          "eventLastDate":`${date2} ${time2}`,
           "eventConceptType":this.cf_cate,
           "emailSendingMessage":"",
           "location":this.loca,
@@ -143,44 +153,44 @@ export default {
         });
         
       const res = await axios.post('https://it-event-back.herokuapp.com/events',
-        // {
-        //   "eventCreateType":"INNER",
-        //   "hostEmail":this.hs_email1+"@"+this.hs_email2,
-        //   "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
-        //   "title":this.cf_name,
-        //   "eventStartDate":date1,
-        //   "eventLastDate":date2,
-        //   "eventConceptType":this.cf_cate,
-        //   "emailSendingMessage":"",
-        //   "location":this.loca,
-        //   "detailLocation":"위치 지도 정보 내용",
-        //   "locationDescription":"위치 상세 내용입니다.",
-        //   "image":null,
-        //   "contents":"행사 내용 필수 입력 입니다.",
-        //   "onlinePlatformInfo":null,
-        //   "onlineEnrollInfo":null,
-        //   "online":this.cf_onlineYN,
-        //   "emailReserveSending":false
-        // }
         {
           "eventCreateType":"INNER",
-          "hostEmail":"uzini_@naver.com",
-          "hostPhone":null,
-          "title":"정상 타이틀 4",
-          "eventStartDate":"2021-03-30 00:00:00",
-          "eventLastDate":"2021-03-30 00:00:00",
-          "eventConceptType":"CLASS",
-          "emailSendingMessage":"예약 발송 메시지 테스트 예약 발송 메시지 테스트 예약 발송 메시지 테스트",
-          "location":"위치 정보",
+          "hostEmail":this.hs_email1+"@"+this.hs_email2,
+          "hostPhone":this.hs_hp1+this.hs_hp2+this.hs_hp3,
+          "title":this.cf_name,
+          "eventStartDate":`${date1} ${time1}`,
+          "eventLastDate":`${date2} ${time2}`,
+          "eventConceptType":this.cf_cate,
+          "emailSendingMessage":"",
+          "location":this.loca,
           "detailLocation":"위치 지도 정보 내용",
           "locationDescription":"위치 상세 내용입니다.",
           "image":null,
           "contents":"행사 내용 필수 입력 입니다.",
           "onlinePlatformInfo":null,
           "onlineEnrollInfo":null,
-          "online":false,
+          "online":this.cf_onlineYN,
           "emailReserveSending":false
-        }
+        },
+        // {
+        //   "eventCreateType":"INNER",
+        //   "hostEmail":"uzini_@naver.com",
+        //   "hostPhone":null,
+        //   "title":"정상 타이틀 4",
+        //   "eventStartDate":"2021-03-30 00:00:00",
+        //   "eventLastDate":"2021-03-30 00:00:00",
+        //   "eventConceptType":"CLASS",
+        //   "emailSendingMessage":"예약 발송 메시지 테스트 예약 발송 메시지 테스트 예약 발송 메시지 테스트",
+        //   "location":"위치 정보",
+        //   "detailLocation":"위치 지도 정보 내용",
+        //   "locationDescription":"위치 상세 내용입니다.",
+        //   "image":null,
+        //   "contents":"행사 내용 필수 입력 입니다.",
+        //   "onlinePlatformInfo":null,
+        //   "onlineEnrollInfo":null,
+        //   "online":false,
+        //   "emailReserveSending":false
+        // }
       )
       console.log(res);
     },
@@ -192,11 +202,36 @@ export default {
       day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
       return  year + '-' + month + '-' + day;
     },
+    getFormatTime(date) {
+      let s =
+        this.transformTime(date.getFullYear(), 4) + '-' +
+        this.transformTime(date.getMonth() + 1, 2) + '-' +
+        this.transformTime(date.getDate(), 2) + ' ' +
+
+        this.transformTime(date.getHours(), 2) + ':' +
+        this.transformTime(date.getMinutes(), 2) + ':' +
+        this.transformTime(date.getSeconds(), 2);
+
+      return s;
+    },
+    transformTime(n, digits) {
+      let zero = '';
+      n = n.toString();
+
+      if (n.length < digits) {
+        for (let i = 0; i < digits - n.length; i++)
+          zero += '0';
+      }
+      return zero + n;
+    }
+
+
   }
 }
 </script>
 
 <style scoped>
+@import '~vue2-timepicker/dist/VueTimepicker.css';
 *:focus{
   outline:none;
 }
