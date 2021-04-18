@@ -46,6 +46,7 @@ export default {
 </script>
 
 <style scoped>
+.container{}
 .login{padding:80px 16px 50px;box-sizing:border-box;min-height:550px}
 .login_logo{padding:0 0 64px;text-align:center}
 .login_logo img{display:block;width:250px;margin:0 auto}

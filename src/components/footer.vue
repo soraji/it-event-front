@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <div class="footer">유자 & 소라의 🧸project</div>
-  </div>
+  <div id="page-container">
+   <div id="content-wrap">
+   </div>
+   <footer id="footer">
+     <div id="scrollBottom">Copyright &copy; 2021 All Rights Reserved by 🐚 & 🍋</div>
+   </footer>
+ </div>
 </template>
 
 <script>
@@ -11,12 +15,21 @@ export default {
 </script>
 
 <style scoped>
-.footer{
-  margin-top:100px;
-  height:150px;
-  width:100%;
-  text-align:center;
-  background-color: #f1f1f1;
-  font-size:10px;
+#page-container {
+  position: relative;
+  min-height: 70vh;
+}
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color:#737373;
+  font-size:15px;
+  line-height:24px;
+  padding:20px 0 20px;
+  background-color:#26272b;
 }
 </style>

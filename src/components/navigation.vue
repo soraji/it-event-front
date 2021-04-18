@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav" id="scrollTop">
     <div class="headerLeft" >
       <router-link to="main" tag="li">
         <img src="../assets/blacklogo.png" alt="BASS CLEF">
@@ -7,10 +7,8 @@
     </div>
     <div class="headerRight">
       <router-link tag="li" to="main"><li>홈</li></router-link>
-      <router-link tag="li" to="online"><li>온라인</li></router-link>
-      <router-link tag="li" to="free"><li>무료</li></router-link>
+      <router-link tag="li" to="online"><li>전체</li></router-link>
       <router-link tag="li" to="magam"><li>곧!마감</li></router-link>
-      <router-link tag="li" to="mogakco"><li>모각코</li></router-link>
       <router-link tag="li" to="enroll" class="enrollBtn"><span >이벤트 등록하기</span></router-link>
       <router-link tag="li" to="login"><li>로그인</li></router-link>
     </div>

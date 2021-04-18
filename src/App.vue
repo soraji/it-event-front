@@ -36,6 +36,7 @@ html,body{
   font-size:16px;
   height:100%;
   position: relative;
+  overflow-y: scroll;
 }
 .fade-enter,
 .fade-leave-active {

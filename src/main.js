@@ -7,13 +7,15 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {store} from './store/index.js'; 
+var VueScrollTo = require('vue-scrollto');
 
 
 library.add(fas)
 library.add(far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueRouter);
-Vue.config.productionTip = false
+Vue.use(VueScrollTo);
+Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),

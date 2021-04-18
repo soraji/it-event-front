@@ -32,18 +32,27 @@
         </router-link> 
       </div>
     </div>
+    <div class="floating">
+      <button type="button" v-scroll-to="'#scrollTop'"><font-awesome-icon :icon="faChevronUp" style="margin:2px 0 1px 0px;"/></button>
+      <button type="button" v-scroll-to="'#scrollBottom'"><font-awesome-icon :icon="faChevronDown" style="margin:2px 0 1px 0px;"/></button>
+    </div>
   </div>
   
 </template>
 
 <script>
+import style from '../lib/style.css'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 export default {
   data(){
     return{
       onlineyn:'00',
       whom:'00',
-      lists:[]
+      lists:[],
+      faChevronUp,faChevronDown
     }
   },
   mounted(){

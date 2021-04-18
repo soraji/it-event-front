@@ -29,16 +29,8 @@ export const router = new VueRouter({
       component:online,
     },
     {
-      path:'/free',
-      component:free,
-    },
-    {
       path:'/magam',
       component:magam,
-    },
-    {
-      path:'/mogakco',
-      component:mogakco,
     },
     {
       path:'/detail',

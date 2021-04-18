@@ -79,6 +79,10 @@
       </table>
       <button type="button" class="submitBtn" @click="checkform()">등록하기</button>
     </div>
+    <div class="floating">
+      <button type="button" v-scroll-to="'#scrollTop'"><font-awesome-icon :icon="faChevronUp" style="margin:2px 0 1px 0px;"/></button>
+      <button type="button" v-scroll-to="'#scrollBottom'"><font-awesome-icon :icon="faChevronDown" style="margin:2px 0 1px 0px;"/></button>
+    </div>
   </div>
 </template>
 
@@ -87,10 +91,13 @@ import axios from 'axios';
 var moment = require('moment');
 moment().format();
 import $ from 'jquery'
+import style from '../../lib/style.css'
 import Datepicker from 'vuejs-datepicker';
 import bootstrap from '../../lib/bootstrap.css'
 import bootstrapselect from '../../lib/bootstrap-select.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import formVar from './form.js';
 export default {
   name:'enrollForm',
